@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8E7BBACD27400C4500884DF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BBACC27400C4500884DF3 /* AppDelegate.swift */; };
 		8E7BBACF27400C4500884DF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BBACE27400C4500884DF3 /* SceneDelegate.swift */; };
-		8E7BBAD127400C4500884DF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BBAD027400C4500884DF3 /* ViewController.swift */; };
+		8E7BBAD127400C4500884DF3 /* PhotoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BBAD027400C4500884DF3 /* PhotoListViewController.swift */; };
 		8E7BBAD627400C4600884DF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BBAD527400C4600884DF3 /* Assets.xcassets */; };
 		8E7BBAD927400C4600884DF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BBAD727400C4600884DF3 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -18,7 +18,7 @@
 		8E7BBAC927400C4500884DF3 /* flicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7BBACC27400C4500884DF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E7BBACE27400C4500884DF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8E7BBAD027400C4500884DF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8E7BBAD027400C4500884DF3 /* PhotoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewController.swift; sourceTree = "<group>"; };
 		8E7BBAD527400C4600884DF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E7BBAD827400C4600884DF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8E7BBADA27400C4600884DF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,14 +54,70 @@
 		8E7BBACB27400C4500884DF3 /* flicker */ = {
 			isa = PBXGroup;
 			children = (
+				8E7BBAE52740224E00884DF3 /* Modules */,
+				8E7BBAE42740224300884DF3 /* Service */,
+				8E7BBAEA2740229E00884DF3 /* Utility */,
 				8E7BBACC27400C4500884DF3 /* AppDelegate.swift */,
 				8E7BBACE27400C4500884DF3 /* SceneDelegate.swift */,
-				8E7BBAD027400C4500884DF3 /* ViewController.swift */,
-				8E7BBAD527400C4600884DF3 /* Assets.xcassets */,
 				8E7BBAD727400C4600884DF3 /* LaunchScreen.storyboard */,
+				8E7BBAD527400C4600884DF3 /* Assets.xcassets */,
 				8E7BBADA27400C4600884DF3 /* Info.plist */,
 			);
 			path = flicker;
+			sourceTree = "<group>";
+		};
+		8E7BBAE42740224300884DF3 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		8E7BBAE52740224E00884DF3 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8E7BBAE62740226100884DF3 /* Photo List */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		8E7BBAE62740226100884DF3 /* Photo List */ = {
+			isa = PBXGroup;
+			children = (
+				8E7BBAE72740227200884DF3 /* Model */,
+				8E7BBAE82740227A00884DF3 /* View */,
+				8E7BBAE92740228000884DF3 /* View Model */,
+			);
+			path = "Photo List";
+			sourceTree = "<group>";
+		};
+		8E7BBAE72740227200884DF3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8E7BBAE82740227A00884DF3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8E7BBAD027400C4500884DF3 /* PhotoListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8E7BBAE92740228000884DF3 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		8E7BBAEA2740229E00884DF3 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,7 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E7BBAD127400C4500884DF3 /* ViewController.swift in Sources */,
+				8E7BBAD127400C4500884DF3 /* PhotoListViewController.swift in Sources */,
 				8E7BBACD27400C4500884DF3 /* AppDelegate.swift in Sources */,
 				8E7BBACF27400C4500884DF3 /* SceneDelegate.swift in Sources */,
 			);
@@ -281,7 +337,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = flicker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Flicker;
-				INFOPLIST_KEY_NSMainNibFile = "Main Interface";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -311,7 +366,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = flicker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Flicker;
-				INFOPLIST_KEY_NSMainNibFile = "Main Interface";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
