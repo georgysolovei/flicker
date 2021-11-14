@@ -12,5 +12,9 @@ final class PhotoListViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
+        
+        NetworkService.photoList { result in
+            print(result)
+        }
     }
 }
