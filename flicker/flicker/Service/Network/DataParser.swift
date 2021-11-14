@@ -12,8 +12,8 @@ struct DataParser {
         switch networkResult {
             case .success(let data):
             do {
-                let photoListObject: PhotoList = try decode(from: data)
-                return .success(photoListObject.photos)
+                let photoListObject: PhotoListDTO = try decode(from: data)
+                return .success(photoListObject.photos.photo)
             } catch {
                 return .failure(.dataValidation)
             }

@@ -8,13 +8,69 @@
 import UIKit
 
 final class PhotoListViewController: UIViewController {
+    
+    private var collectionView: UICollectionView!
+    
+    private let viewModel = PhotoListViewModel()
+    let search = UISearchController(searchResultsController: nil)
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setupUI()
+        viewModel.loadData(completion: collectionView.reloadData)
+    }
+    
+    private func setupUI() {
+        overrideUserInterfaceStyle = .light
         view.backgroundColor = .white
+        navigationItem.title = NSLocalizedString("Search photo", comment: "")
+        navigationController?.navigationBar.prefersLargeTitles = true
         
-        NetworkService.photoList { result in
-            print(result)
-        }
+        search.searchResultsUpdater = self
+        navigationItem.searchController = search
+        
+        // Set up collection view
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        let width = view.frame.width/2
+        layout.itemSize = CGSize(width: width, height: width)
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.delegate = self
+        collectionView.dataSource = self
+
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(collectionView)
+        collectionView.backgroundColor = .black
+        
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+    }
+ }
+
+// MARK: - Collection view data source/delegate
+extension PhotoListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.photoArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        cell.backgroundColor = .red
+        return cell
+    }
+}
+
+
+// MARK: - Search bar delegate
+extension PhotoListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        print(searchController.searchBar.text)
     }
 }

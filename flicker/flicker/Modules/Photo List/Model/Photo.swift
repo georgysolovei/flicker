@@ -7,9 +7,13 @@
 
 import Foundation
 
-struct PhotoList: Decodable {
-    let photos: [Photo]
+struct PhotoListDTO: Decodable {
+    let photos: PhotoDTO
 }
+struct PhotoDTO: Decodable {
+    let photo: [Photo]
+}
+
 
 struct Photo: Decodable {
     let id: String
