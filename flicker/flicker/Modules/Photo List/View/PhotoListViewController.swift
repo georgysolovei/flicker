@@ -39,18 +39,19 @@ final class PhotoListViewController: UIViewController {
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: "PhotoCell")
         collectionView.delegate = self
         collectionView.dataSource = self
 
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
-        collectionView.backgroundColor = .black
         
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        
+        collectionView.backgroundColor = .black
     }
  }
 
@@ -61,8 +62,26 @@ extension PhotoListViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .red
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
+        
+        let last = collectionView.numberOfItems(inSection: 0) - 1
+        let beforeLast = collectionView.numberOfItems(inSection: 0) - 2
+        
+        switch indexPath.item {
+            case 0:
+                cell.config = .startEven
+            case 1:
+                cell.config = .startOdd
+            case beforeLast where beforeLast % 2 == 0:
+                cell.config = .endEven
+            case last where last % 2 != 0:
+                cell.config = .endOdd
+            case indexPath.item where indexPath.item % 2 != 0:
+                cell.config = .odd
+            case indexPath.item where indexPath.item % 2 == 0:
+                cell.config = .even
+            default: break
+        }
         return cell
     }
 }
