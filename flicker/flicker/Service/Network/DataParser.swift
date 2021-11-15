@@ -13,8 +13,9 @@ struct DataParser {
             case .success(let data):
             do {
                 let photoListObject: PhotoListDTO = try decode(from: data)
-                return .success(photoListObject.photos.photo)
+                return .success(photoListObject.photos?.photo ?? [])
             } catch {
+                print(error)
                 return .failure(.dataValidation)
             }
             case .failure(let error):

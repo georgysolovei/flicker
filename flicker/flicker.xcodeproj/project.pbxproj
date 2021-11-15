@@ -10,9 +10,10 @@
 		8E02FE8C274156030070C610 /* PhotoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02FE8B274156030070C610 /* PhotoListViewModel.swift */; };
 		8E02FE912741A7C80070C610 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02FE902741A7C80070C610 /* PhotoCell.swift */; };
 		8E07E6002742D15B00B0A829 /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07E5FF2742D15B00B0A829 /* Extension+UIImageView.swift */; };
+		8E07E6022742E03300B0A829 /* Debounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07E6012742E03300B0A829 /* Debounce.swift */; };
+		8E07E6032742F97F00B0A829 /* PhotoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BBAD027400C4500884DF3 /* PhotoListViewController.swift */; };
 		8E7BBACD27400C4500884DF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BBACC27400C4500884DF3 /* AppDelegate.swift */; };
 		8E7BBACF27400C4500884DF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BBACE27400C4500884DF3 /* SceneDelegate.swift */; };
-		8E7BBAD127400C4500884DF3 /* PhotoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BBAD027400C4500884DF3 /* PhotoListViewController.swift */; };
 		8E7BBAD627400C4600884DF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BBAD527400C4600884DF3 /* Assets.xcassets */; };
 		8E7BBAD927400C4600884DF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BBAD727400C4600884DF3 /* LaunchScreen.storyboard */; };
 		8E7BBAEC274025D600884DF3 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BBAEB274025D600884DF3 /* NetworkService.swift */; };
@@ -27,6 +28,7 @@
 		8E02FE8B274156030070C610 /* PhotoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewModel.swift; sourceTree = "<group>"; };
 		8E02FE902741A7C80070C610 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		8E07E5FF2742D15B00B0A829 /* Extension+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
+		8E07E6012742E03300B0A829 /* Debounce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debounce.swift; sourceTree = "<group>"; };
 		8E7BBAC927400C4500884DF3 /* flicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7BBACC27400C4500884DF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E7BBACE27400C4500884DF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		8E7BBAEA2740229E00884DF3 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				8E07E6012742E03300B0A829 /* Debounce.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -243,14 +246,15 @@
 			files = (
 				8E7BBAF1274033CE00884DF3 /* Photo.swift in Sources */,
 				8E7BBAF627405BF300884DF3 /* Request.swift in Sources */,
-				8E7BBAD127400C4500884DF3 /* PhotoListViewController.swift in Sources */,
 				8E02FE8C274156030070C610 /* PhotoListViewModel.swift in Sources */,
+				8E07E6032742F97F00B0A829 /* PhotoListViewController.swift in Sources */,
 				8E7BBACD27400C4500884DF3 /* AppDelegate.swift in Sources */,
 				8E7BBAEF2740267100884DF3 /* NetworkManager.swift in Sources */,
 				8E7BBAEC274025D600884DF3 /* NetworkService.swift in Sources */,
 				8E7BBAF827405C8500884DF3 /* NetworkError.swift in Sources */,
 				8E7BBAF427405BD500884DF3 /* DataParser.swift in Sources */,
 				8E02FE912741A7C80070C610 /* PhotoCell.swift in Sources */,
+				8E07E6022742E03300B0A829 /* Debounce.swift in Sources */,
 				8E07E6002742D15B00B0A829 /* Extension+UIImageView.swift in Sources */,
 				8E7BBACF27400C4500884DF3 /* SceneDelegate.swift in Sources */,
 			);
@@ -407,7 +411,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = home.flicker;
+				PRODUCT_BUNDLE_IDENTIFIER = home.flicker.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -436,7 +440,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = home.flicker;
+				PRODUCT_BUNDLE_IDENTIFIER = home.flicker.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -40,7 +40,9 @@ final class PhotoCell: UICollectionViewCell {
     private func setupUI() {
         contentView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        
         NSLayoutConstraint.activate([topConstraint, bottomConstraint, leadingConstraint, trailingConstraint])
         setupConstraints()
     }

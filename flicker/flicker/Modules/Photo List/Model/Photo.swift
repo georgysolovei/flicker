@@ -8,7 +8,7 @@
 import Foundation
 
 struct PhotoListDTO: Decodable {
-    let photos: PhotoDTO
+    let photos: PhotoDTO?
 }
 struct PhotoDTO: Decodable {
     let photo: [Photo]
@@ -17,7 +17,7 @@ struct PhotoDTO: Decodable {
 
 struct Photo: Decodable {
     let id: String
-    private let url: String
+    private let url: String?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -27,6 +27,6 @@ struct Photo: Decodable {
 
 extension Photo {
     var photoURL: URL? {
-        URL(string: url)
+        URL(string: url ?? "")
     }
 }

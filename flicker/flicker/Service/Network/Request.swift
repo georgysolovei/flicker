@@ -16,7 +16,7 @@ protocol RequestType {
 
 enum Request: RequestType {
     
-    case photos
+    case photos(text: String)
 }
 
 extension Request {
@@ -34,10 +34,10 @@ extension Request {
     
     var params: [[String : String]]? {
         switch self {
-            case .photos:
+            case .photos(let text):
                 return [["api_key": Self.apiKey],
                          ["method": Self.searchMethod],
-                           ["tags": "home"],
+                           ["tags": "\(text)"],
                          ["format": "json"],
                  ["nojsoncallback": "true"],
                          ["extras": "media"],

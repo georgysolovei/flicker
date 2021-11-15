@@ -11,8 +11,8 @@
 import Foundation
 
 struct NetworkService {
-    static func photoList(completion: @escaping (Result<[Photo], NetworkError>) -> Void) {
-        let request = Request.photos
+    static func photoList(text: String, completion: @escaping (Result<[Photo], NetworkError>) -> Void) {
+        let request = Request.photos(text: text)
         NetworkManager.shared.request(request) {
             completion(DataParser.photoList($0))
         }
