@@ -41,7 +41,6 @@ final class PhotoCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
-        imageView.backgroundColor = .red
         NSLayoutConstraint.activate([topConstraint, bottomConstraint, leadingConstraint, trailingConstraint])
         setupConstraints()
     }

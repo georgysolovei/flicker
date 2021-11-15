@@ -49,9 +49,7 @@ final class PhotoListViewController: UIViewController {
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        
-        collectionView.backgroundColor = .black
+        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true        
     }
  }
 
@@ -63,7 +61,11 @@ extension PhotoListViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
+        if let url = viewModel.photoArray[indexPath.row].photoURL {
+            cell.imageView.load(url: url)
+        }
         
+        // Set up margins
         let last = collectionView.numberOfItems(inSection: 0) - 1
         let beforeLast = collectionView.numberOfItems(inSection: 0) - 2
         

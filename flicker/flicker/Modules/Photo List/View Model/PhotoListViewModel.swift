@@ -10,6 +10,8 @@ import Foundation
 final class PhotoListViewModel {
     var photoArray: [Photo] = []
     
+    var isLoading = false
+    
     func loadData(completion: @escaping () -> ()) {
         NetworkService.photoList { [weak self] result in
             switch result {

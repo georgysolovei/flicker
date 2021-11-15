@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8E02FE8C274156030070C610 /* PhotoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02FE8B274156030070C610 /* PhotoListViewModel.swift */; };
 		8E02FE912741A7C80070C610 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02FE902741A7C80070C610 /* PhotoCell.swift */; };
+		8E07E6002742D15B00B0A829 /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07E5FF2742D15B00B0A829 /* Extension+UIImageView.swift */; };
 		8E7BBACD27400C4500884DF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BBACC27400C4500884DF3 /* AppDelegate.swift */; };
 		8E7BBACF27400C4500884DF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BBACE27400C4500884DF3 /* SceneDelegate.swift */; };
 		8E7BBAD127400C4500884DF3 /* PhotoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BBAD027400C4500884DF3 /* PhotoListViewController.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		8E02FE8B274156030070C610 /* PhotoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewModel.swift; sourceTree = "<group>"; };
 		8E02FE902741A7C80070C610 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		8E07E5FF2742D15B00B0A829 /* Extension+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
 		8E7BBAC927400C4500884DF3 /* flicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7BBACC27400C4500884DF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E7BBACE27400C4500884DF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 		8E02FE8D274166610070C610 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				8E07E5FF2742D15B00B0A829 /* Extension+UIImageView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				8E7BBAF827405C8500884DF3 /* NetworkError.swift in Sources */,
 				8E7BBAF427405BD500884DF3 /* DataParser.swift in Sources */,
 				8E02FE912741A7C80070C610 /* PhotoCell.swift in Sources */,
+				8E07E6002742D15B00B0A829 /* Extension+UIImageView.swift in Sources */,
 				8E7BBACF27400C4500884DF3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
