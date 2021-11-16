@@ -16,13 +16,13 @@ final class NetworkManager {
     
     func request(_ request: RequestType, completion: @escaping (Result<Data, Error>) -> Void) {
         let session = URLSession.shared
-        var url = URLComponents(string: request.path)!
+        var urlComponents = URLComponents(string: request.path)!
       
         if let params = request.params {
-            url.queryItems = []
+            urlComponents.queryItems = []
             params.forEach { dict in
                 if dict.count == 1 {
-                    url.queryItems?.append(
+                    urlComponents.queryItems?.append(
                         URLQueryItem(name: dict.keys.first!, value: dict.values.first!)
                     )
                 } else {
@@ -30,8 +30,11 @@ final class NetworkManager {
                 }
             }
         }
-        
-        var urlRequest = URLRequest(url: url.url!, timeoutInterval: 30)
+        guard let url = urlComponents.url else {
+            assertionFailure("Failed to construct URL")
+            return
+        }
+        var urlRequest = URLRequest(url: url, timeoutInterval: 30)
         urlRequest.httpMethod = request.method
 
         let task = session.dataTask(with: urlRequest, completionHandler: { data, response, error in

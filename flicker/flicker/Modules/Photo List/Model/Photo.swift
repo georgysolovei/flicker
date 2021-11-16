@@ -7,14 +7,6 @@
 
 import Foundation
 
-struct PhotoListDTO: Decodable {
-    let photos: PhotoDTO?
-}
-struct PhotoDTO: Decodable {
-    let photo: [Photo]
-}
-
-
 struct Photo: Decodable {
     let id: String
     private let url: String?

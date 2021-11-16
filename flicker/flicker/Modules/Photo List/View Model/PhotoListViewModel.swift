@@ -8,11 +8,11 @@
 import Foundation
 
 final class PhotoListViewModel {
-    var photoArray: [Photo] = []
+    private(set) var photoArray: [Photo] = []
     
     private var text = ""
     
-    func loadData(text: String, completion: @escaping () -> ()) {
+    func loadData(text: String, completion: @escaping (NetworkError?) -> ()) {
         self.text = text
         NetworkService.photoList(text: text) { [weak self] result in
             switch result {
@@ -23,10 +23,12 @@ final class PhotoListViewModel {
                         self?.photoArray = photoList
                     }
                     DispatchQueue.main.async {
-                        completion()
+                        completion(nil)
                     }
                 case .failure(let error):
-                    print(error)
+                    DispatchQueue.main.async {
+                        completion(error)
+                    }
             }
         }
     }

@@ -20,10 +20,12 @@ final class PhotoCell: UICollectionViewCell {
     }
     
     var config: Config = .startEven {
-        didSet { setupConstraints() }
+        didSet {
+            setupConstraints()
+        }
     }
     
-    private(set) var imageView = UIImageView(frame: .zero)
+    let imageView = UIImageView(frame: .zero)
     
     private lazy var topConstraint = imageView.topAnchor.constraint(equalTo: contentView.topAnchor)
     private lazy var bottomConstraint = imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
@@ -56,25 +58,30 @@ final class PhotoCell: UICollectionViewCell {
         let isEven = config == .startEven || config == .even || config == .endEven
         let isMiddle = config == .odd || config == .even
         
-        if isStart {
-            topConstraint.constant = 8
-            bottomConstraint.constant = -4
-        }
-        if isEnd {
-            topConstraint.constant = 4
-            bottomConstraint.constant = -8
-        }
         if isOdd {
             leadingConstraint.constant = 4
             trailingConstraint.constant = -8
         }
+        
         if isEven {
             leadingConstraint.constant = 8
             trailingConstraint.constant = -4
         }
+        
         if isMiddle {
             topConstraint.constant = 4
             bottomConstraint.constant = -4
+            return
+        }
+        
+        if isStart {
+            topConstraint.constant = 8
+            bottomConstraint.constant = -4
+        }
+        
+        if isEnd {
+            topConstraint.constant = 4
+            bottomConstraint.constant = -8
         }
     }
 }

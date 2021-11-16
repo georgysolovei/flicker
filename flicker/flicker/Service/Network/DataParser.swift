@@ -11,14 +11,16 @@ struct DataParser {
     static func photoList(_ networkResult: Result<Data, Error>) -> (Result<[Photo], NetworkError>) {
         switch networkResult {
             case .success(let data):
-            do {
-                let photoListObject: PhotoListDTO = try decode(from: data)
-                return .success(photoListObject.photos?.photo ?? [])
-            } catch {
-                print(error)
-                return .failure(.dataValidation)
-            }
-            case .failure(let error):
+                do {
+                    let photoListObject: PhotoListDTO = try decode(from: data)
+                    return .success(photoListObject.photos?.photo ?? [])
+                } catch {
+                    print(error)
+                    return .failure(.dataValidation)
+                }
+            case .failure(_):
+                // Parse network errors here and translate them
+                // into app custom errors
                 return .failure(.networkProblem)
         }
     }

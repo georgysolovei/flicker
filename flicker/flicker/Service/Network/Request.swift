@@ -11,11 +11,9 @@ protocol RequestType {
     var path: String { get }
     var method: String { get }
     var params: [[String : String]]? { get }
-//    var encoding: ParameterEncoding { get }
 }
 
 enum Request: RequestType {
-    
     case photos(text: String)
 }
 

@@ -14,10 +14,10 @@ final class ImageSaverService: NSObject {
     
     func writeToPhotoAlbum(image: UIImage, completion: @escaping (Error?) -> ()) {
         self.completion = completion
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveError), nil)
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(completedWithResult), nil)
     }
 
-    @objc func saveError(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+    @objc func completedWithResult(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         completion(error)
     }
 }

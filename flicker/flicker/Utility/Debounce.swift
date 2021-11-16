@@ -14,7 +14,9 @@ struct Debounce<T: Equatable> {
                       perform: @escaping (T) -> ()) {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + interval) {
-            if input == current() { perform(input) }
+            if input == current() {
+                perform(input)
+            }
         }
     }
 }

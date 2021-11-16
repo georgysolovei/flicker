@@ -12,6 +12,7 @@ final class DetailsViewController: UIViewController {
     private var saveButton: UIButton!
     
     private let viewModel: DetailsViewModel
+    
     init(viewModel: DetailsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -36,25 +37,26 @@ final class DetailsViewController: UIViewController {
         // Set up image view
         imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+    
         view.addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         imageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         // Set up save button
-        let saveButton = UIButton(type: .system, primaryAction: UIAction(title: "Button Title", handler: { [unowned self] _ in
+        let saveButton = UIButton(type: .system, primaryAction: UIAction(title: "Button Title",
+                                                                         handler: { [unowned self] _ in
             self.saveButtonTapped()
         }))
-        
 
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.setTitle(NSLocalizedString("Save Image", comment: ""), for: .normal)
         saveButton.titleLabel?.font = .systemFont(ofSize: 24)
         saveButton.setTitleColor(.white, for: .normal)
         
         view.addSubview(saveButton)
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
         saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
@@ -73,7 +75,9 @@ final class DetailsViewController: UIViewController {
                     let settingsAction = UIAlertAction(title: NSLocalizedString("Go to Settings", comment: ""),
                                                        style: .cancel,
                                                        handler: { _ in
-                        UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+                        if UIApplication.shared.canOpenURL(URL(string:UIApplication.openSettingsURLString)!) {
+                            UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+                        }
                     })
                     
                     alertController.addAction(cancelAction)
