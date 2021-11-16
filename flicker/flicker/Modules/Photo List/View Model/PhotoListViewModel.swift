@@ -9,22 +9,30 @@ import Foundation
 
 final class PhotoListViewModel {
     var photoArray: [Photo] = []
-        
-    func loadData(text: String, completion: @escaping () -> ()) {        
+    
+    private var text = ""
+    
+    func loadData(text: String, completion: @escaping () -> ()) {
+        self.text = text
         NetworkService.photoList(text: text) { [weak self] result in
             switch result {
-            case .success(let photoList):
-                self?.photoArray = photoList
-                DispatchQueue.main.async {
-                    completion()
-                }
-            case .failure(let error):
-                print(error)
+                case .success(let photoList):
+                    if self?.text.isEmpty == true {
+                        self?.photoArray.removeAll()
+                    } else {
+                        self?.photoArray = photoList
+                    }
+                    DispatchQueue.main.async {
+                        completion()
+                    }
+                case .failure(let error):
+                    print(error)
             }
         }
     }
     
     func resetData() {
+        text = ""
         photoArray = []
     }
     
@@ -48,5 +56,9 @@ final class PhotoListViewModel {
             default:
                 return .startEven
         }
+    }
+    
+    func detailsViewModel(for index: Int) -> DetailsViewModel {
+        DetailsViewModel(url: photoArray[index].photoURL)
     }
 }

@@ -40,7 +40,7 @@ final class PhotoListViewController: UIViewController {
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     
-        collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: "PhotoCell")
+        collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: PhotoCell.reuseIdentifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.keyboardDismissMode = .onDrag
@@ -79,7 +79,7 @@ final class PhotoListViewController: UIViewController {
         notFoundLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         
         view.addSubview(notFoundContainer)
-        notFoundContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 16).isActive = true
+        notFoundContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         notFoundContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         notFoundContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
@@ -103,12 +103,19 @@ extension PhotoListViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.reuseIdentifier, for: indexPath) as! PhotoCell
         if let url = viewModel.photoArray[indexPath.row].photoURL {
             cell.imageView.load(url: url)
         }
         cell.config = viewModel.cellConfig(for: indexPath.row)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        let detailsViewController = DetailsViewController(viewModel: viewModel.detailsViewModel(for: indexPath.row))
+        present(detailsViewController, animated: true)
+        searchController.searchBar.resignFirstResponder()
+        return false
     }
 }
 
@@ -123,7 +130,6 @@ extension PhotoListViewController: UISearchBarDelegate {
             return
         }
         Debounce<String>.input(searchText, comparedAgainst: searchBar.text ?? "", perform: { [weak self] _ in
-        
             self?.activityIndicator.startAnimating()
             self?.notFoundContainer.isHidden = true
            

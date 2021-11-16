@@ -8,16 +8,21 @@
 import UIKit
 
 extension UIImageView {
-    func load(url: URL) {
+    private var activityIndicator: UIActivityIndicatorView? {
+        subviews.first(where: { $0 is UIActivityIndicatorView }) as? UIActivityIndicatorView
+    }
+    
+    func load(url: URL, activityIndicatorStyle: UIActivityIndicatorView.Style = .medium) {
         
-        // set up activity indicator
-        if let activityIndicator = subviews.first(where: {$0 is UIActivityIndicatorView}) as? UIActivityIndicatorView {
+        // Set up activity indicator
+        if let activityIndicator = activityIndicator {
             (activityIndicator.startAnimating())
         } else  {
             let activityIndicator = UIActivityIndicatorView()
-            activityIndicator.style = .medium
+            activityIndicator.style = activityIndicatorStyle
             activityIndicator.translatesAutoresizingMaskIntoConstraints = false
             activityIndicator.color = .systemBlue
+            activityIndicator.startAnimating()
             
             addSubview(activityIndicator)
             activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -31,7 +36,7 @@ extension UIImageView {
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
-                        (self?.subviews.first(where: { $0 is UIActivityIndicatorView}) as? UIActivityIndicatorView)?.stopAnimating()
+                        self?.activityIndicator?.stopAnimating()
                         self?.image = image
                     }
                 }

@@ -8,6 +8,8 @@
 import UIKit
 
 final class PhotoCell: UICollectionViewCell {
+    static let reuseIdentifier = "PhotoCell"
+   
     enum Config {
         case startEven
         case startOdd
